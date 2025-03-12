@@ -48,3 +48,117 @@ def prime(m):
 
 b = int(input("Please enter a positive integer: ")) #b is the argument that will call prime() wich calls determine_primes()
 print("the primes upt to ", b," are : ", prime(b))
+
+contacts = {}
+notes = []
+while True: # main while loop 
+    x = input("To manage tpye: 'notes' or 'contacts', if finished type: 'exit' ").lower()
+    if (x == "contacts"): # first boolean for managing contacts
+        while True: # nested while loop for dealing with contacts
+            entry = input('To add a contact type: "add", see all contacts type: "view", to exit type "leave", to remove a contact type "delete" ').upper()
+            if(entry == "DELETE"): 
+                while True:   # this loop allows contacts to be removed and checks if the key entered is in contacts
+                    rem = input("enter contacts 'name', when finished tpye 'done'" ).upper()
+                    if(len(contacts) == 0):          
+                        print("contacts are empty")
+                        break
+                    elif rem in contacts: 
+                        del contacts[rem]
+                    elif rem == "DONE":
+                        break
+                    else:
+                        print("ERROR")
+            elif entry == "LEAVE":
+                break
+            elif entry == "VIEW":
+                print(contacts)
+            elif(entry == "ADD"): 
+                while True: # nested while loop deals with adding contacts
+                    name = input("contacts name?, type 'exit' when finished adding contacts ").upper() # THE KEY 
+                    if name == 'EXIT':
+                        break
+                    elif name != 'EXIT':
+                        num = input("Contacts number ").lower()# the key VALUE
+                        contacts[name] = num #adds a contact to dictionary
+            else:
+                print("ERROR: invalid input")
+    elif (x == "notes"): #second boolean for notes option 
+        while True:
+            print("Enter notes, To leave type: 'leave', To delete your previous note type: 'remove', to see all of your notes type: 'view'")
+            y = input(":").lower()
+            if (y == "leave" ):
+                break
+            elif (y == "remove"):
+                notes.pop(-1)
+            elif (y == "view"):
+                print(notes)
+            elif y != 'exit' and y != 'notes' and y != 'remove' :
+                notes.append((y))
+    elif(x == "exit"):# third boolean for the exit option
+        break # ends the main while True loop and terminates the program.
+    else:
+        print("ERROR: invalid input")
+
+my_dictionary = {"one": True , "two": 2, "three": "two+one", "four": 4, "five": 5,
+"six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, }
+my_dictionary[" eleven"]=11
+my_dictionary[" twelve"]=12
+my_dictionary[" thirteen"]=13
+my_dictionary.pop("one")
+del my_dictionary["three"]
+print(my_dictionary)
+
+#include <stdio.h>
+float convertUsdToEur(float usd) {
+    float eur = usd * 0.85;
+    return eur;
+}
+
+int main()
+{
+    float a;
+    printf("Inter how much money you have in USD: ");
+    scanf("%f", &a);
+    printf("you have this many Euro(s) %f",convertUsdToEur(a) );
+    return 0;
+}
+
+from random import *
+def D_20():
+    a = randint(1, 20)
+    print("A", a, "was rolled")
+    return a 
+
+def D_6():
+    b = randint(1,6)
+    print("A", b, "was rolled")
+    return b 
+
+def D_4():
+    e = randint(1,4)
+    print("A", e, "was rolled")
+
+def D_12():
+    c = randint(1,12)
+    print("A", c, "was rolled")
+    return c
+
+def D_10():
+    d = randint(1, 10)
+    print("A", d, "was rolled") 
+    return d
+
+
+class enemies: 
+    def __init__(self, health, enemy_armor, attack_1, attack_2, attack_3) :
+        self.health = health
+        self.enemy_armor = enemy_armor 
+        self.attack_1 = attack_1
+        self.attack_2 = attack_2
+        self.attack_3 = attack_3
+
+goblin = enemies(12, 15, {"smash": D_6()} , {"hit": D_4()}, {"bite": D_10()})
+print(goblin.attack_1)
+print(goblin.attack_2)
+troll = enemies(30, 12, {"bash": D_12()}, {"club": D_10()}, {"chomp": D_10()})
+print(troll.attack_3)
