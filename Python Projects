@@ -1,0 +1,55 @@
+contacts = {}
+notes = []
+while True: # main while loop
+x = input("To manage tpye: 'notes' or 'contacts', if finished type: 'exit'
+").lower()
+if (x == "contacts"): # first boolean for managing contacts
+while True: # nested while loop for dealing with contacts
+entry = input('To add a contact type: "add", see all contacts type:
+"view", to exit type "leave", to remove a contact type "delete" ').upper()
+if(entry == "DELETE"):
+while True: # this loop allows contacts to be removed and checks
+if the key entered is in contacts
+rem = input("enter contacts 'name', when finished tpye
+'done'" ).upper()
+if(len(contacts) == 0):
+print("contacts are empty")
+break
+elif rem in contacts:
+del contacts[rem]
+elif rem == "DONE":
+break
+else:
+print("ERROR")
+elif entry == "LEAVE":
+break
+elif entry == "VIEW":
+print(contacts)
+elif(entry == "ADD"):
+while True: # nested while loop deals with adding contacts
+name = input("contacts name?, type 'exit' when finished adding
+contacts ").upper() # THE KEY
+if name == 'EXIT':
+break
+elif name != 'EXIT':
+num = input("Contacts number ").lower()# the key VALUE
+contacts[name] = num #adds a contact to dictionary
+else:
+print("ERROR: invalid input")
+elif (x == "notes"): #second boolean for notes option
+while True:
+print("Enter notes, To leave type: 'leave', To delete your previous
+note type: 'remove', to see all of your notes type: 'view'")
+y = input(":").lower()
+if (y == "leave" ):
+break
+elif (y == "remove"):
+notes.pop(-1)
+elif (y == "view"):
+print(notes)
+elif y != 'exit' and y != 'notes' and y != 'remove' :
+notes.append((y))
+elif(x == "exit"):# third boolean for the exit option
+break # ends the main while True loop and terminates the program.
+else:
+print("ERROR: invalid input")
