@@ -1,0 +1,53 @@
+def factorial(n):
+result = 1
+for i in range(1, n+1):# having range start at one allows the definition of
+factorial to be satisfied when 0 is inputed
+result = result * i #this allows "result" to be modified by the definition
+of factorial
+return result #returns our modified result
+i = int(input("Enter a natural number; for instance 0, 1, 2, 3, ....."))
+print("The factorial of n is:", factorial(i))# calling the fcn
+my_list= ["one", "banana", "pineapple"]
+my_dictionary = {}
+for i in my_list:
+my_dictionary[i] = len(i) # took me a bit to figure out this syntax, but
+essentially we need to add keys with a specific value, each i in the list can be
+the key for its own length
+print(my_dictionary)
+numbers = [1,2,3,4,5,6,7,8,9,10] #a list of numbers
+for i in numbers: #these nested for loops give every possible multiplication
+combination for the elements in our list
+for j in numbers: # i believe range(1,11) would give the same reult as using a
+list
+print("", i, " * ", j, " = ", i * j)
+matrix = [
+[1,0,0,0,0],
+[0,1,0,0,0],
+[0,0,1,0,0],
+[0,0,0,1,0],
+[0,0,0,0,1] ]
+for row in matrix: # this for loop is for identifying the columns
+for column in matrix: # this for loop is for identifying the rows
+if row == column: # identifies when the row and column are is the same
+print(1, end = '') #when they are the same 1 is printed
+else:
+print(0, end = '')
+print() # this allows, after the end of each column is reached, for a new line
+to start giving the matrix format
+def determine_primes(n):
+for i in range(2,n):#by setting the range to (2,n) if n mod i = 0 then we do
+not have a prime number
+if n % i == 0:
+return False #this allows or definition of a prime number to be
+satisfied
+return True
+def prime(m):
+primes = []
+for j in range(2, m+1):
+if determine_primes(j): # call the previous fcn that checks for primes in
+primes.append(j) # adds to the empty list when true is returned by
+the fcn being called
+return primes #returns the modified list
+b = int(input("Please enter a positive integer: ")) #b is the argument that will
+call prime() wich calls determine_primes()
+print("the primes upt to ", b," are : ", prime(b))
