@@ -1,0 +1,49 @@
+AR = 39.9^2/50.1;
+e = 0.79;
+V = 1:1:300; % Range of velocities
+
+CL_CD = zeros(size(V)); % Pre-allocate array for storing CL/CD values
+
+for i = 1:length(V)
+CL = 14628 / (0.5 * 1.2250 * V(i)^2); % Calculate lift coefficient
+CD = 0.032 + (CL^2 / (pi * e * AR)); % Calculate drag coefficient
+CL_CD(i) = CL^(1/2) / CD; % Store the lift-to-drag ratio
+end
+
+% Find the maximum value of CL/CD and its corresponding velocity
+[max_CL_CD, idx_max] = max(CL_CD); % Maximum value and index
+V_at_max = V(idx_max); % Velocity at which maximum occurs
+
+% Display the results
+fprintf('The maximum CL/CD is %.2f at a velocity of %.2f m/s.\n', max_CL_CD, V_at_max);
+
+% Plot the graph
+plot(V, CL_CD)
+xlabel('Velocity (m/s)')
+ylabel('C_L / C_D')
+title('Lift-to-Drag Ratio vs Velocity')
+
+% Highlight the maximum point on the plot
+hold on
+plot(V_at_max, max_CL_CD, 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r')
+legend('CL/CD curve', 'Maximum CL/CD')
+hold off
+R = 2*sqrt(2/(1.2250*50.1))*(1/1.00e-4)*max_CL_CD*(14628^(1/2)-6781^(1/2))
+% Second for loop for calculating maximum endurance at altitude
+
+for i = 1:length(V)
+CL = 14628 / (0.5 * 3.1194e-1 * V(i)^2); % Calculate lift coefficient
+CD = 0.032 + (CL^2 / (pi * e * AR)); % Calculate drag coefficient
+CL_CD(i) = CL / CD; % Store the lift-to-drag ratio
+end
+
+% Find the maximum value of CL/CD and its corresponding velocity AT ALTITUDE
+[max_CL_CD, idx_max] = max(CL_CD); % Maximum value and index
+V_at_max = V(idx_max); % Velocity at which maximum occurs
+
+% Display the results
+fprintf('The maximum CL/CD is %.2f at a velocity of %.2f m/s.\n', max_CL_CD, V_at_max);
+
+E = (1/1.00e-4)*max_CL_CD*log(14628/6781)
+
+
